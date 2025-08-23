@@ -1,0 +1,79 @@
+submodules for this project are taken from : "https://github.com/STMicroelectronics/oe-manifest/blob/scarthgap/default.xml"
+as of the commit of this project they are as follows: 
+  <project name="bitbake" path="layers/openembedded-core/bitbake" remote="oe" revision="7375d32e8c1af20c51abec4eb3b072b4ca58b239"/>
+  <project name="meta-openembedded" path="layers/meta-openembedded" remote="oe" revision="e92d0173a80ea7592c866618ef5293203c50544c"/>
+  <project name="meta-st-openstlinux" path="layers/meta-st/meta-st-openstlinux" revision="14bbb30d00473973a67d85cbb1db8a87aa8afe65"/>
+  <project name="meta-st-stm32mp" path="layers/meta-st/meta-st-stm32mp" revision="8b449a5ffe02a4622a1d404ede53ea9a5e6303d6"/>
+  <project name="meta-st-stm32mp-addons" path="layers/meta-st/meta-st-stm32mp-addons" revision="40ddfa3c88b8d5e27983761f94f1e1ce3653e97d"/>
+  <project name="meta-st-scripts" path="layers/meta-st/scripts" revision="8826802b453ef2ead61b07c7bc5ab525a405df04"/>
+  <project name="openembedded-core" path="layers/openembedded-core" remote="oe" revision="cd2b6080a4c0f2ed2c9939ec0b87763aef595048"/>
+
+
+these submodules can be added to the project as follows: 
+git submodule add https://github.com/openembedded/bitbake
+cd ./bitbake
+git checkout 7375d32e8c1af20c51abec4eb3b072b4ca58b239
+cd ..
+
+
+git submodule add https://github.com/openembedded/meta-openembedded.git
+cd ./meta-openembedded
+git checkout e92d0173a80ea7592c866618ef5293203c50544c
+cd ..
+
+
+git submodule add https://github.com/openembedded/openembedded-core.git
+cd ./openembedded-core
+git checkout cd2b6080a4c0f2ed2c9939ec0b87763aef595048
+cd ..
+
+/*add submodules to the your git repo in /layers/meta-st folder*/
+
+git submodule add https://github.com/STMicroelectronics/meta-st-openstlinux.git
+cd ./meta-st-openstlinux
+git checkout 14bbb30d00473973a67d85cbb1db8a87aa8afe65
+cd ..
+
+
+git submodule add https://github.com/STMicroelectronics/meta-st-stm32mp.git
+cd ./meta-st-stm32mp
+git checkout 8b449a5ffe02a4622a1d404ede53ea9a5e6303d6
+cd ..
+
+
+git submodule add https://github.com/STMicroelectronics/meta-st-stm32mp-addons.git
+cd ./meta-st-stm32mp-addons
+git checkout 40ddfa3c88b8d5e27983761f94f1e1ce3653e97d
+cd ..
+
+
+git submodule add https://github.com/STMicroelectronics/meta-st-scripts.git scripts
+
+cd ./scripts
+git checkout 8826802b453ef2ead61b07c7bc5ab525a405df04
+cd ..
+
+this is repeated for each sub modules, when all modules are added push submodules using: 
+git add .
+git commit -m "added submodules"
+git push 
+
+
+/*install the required packages*/
+sudo apt-get update
+sudo apt-get install bsdmainutils build-essential chrpath cpio diffstat gcc-multilib git-lfs libgmp-dev libmpc-dev libsdl1.2-dev libssl-dev libusb-1.0-0 lz4 pylint python3-git python3-pexpect python3-pip socat texinfo unzip xterm zstd
+
+
+/*if you get an error "Fetcher failure for URL: 'https://www.example.com/'. URL doesn't work." during the build*/
+
+add the two line below to /conf/local.conf
+#check connectivity using google
+CONNECTIVITY_CHECK_URIS = "https://www.google.com/"
+
+
+/*when debugging certain modules, only debug that particular module the following commands can be used*/
+    /*set up envirenmen, set the correct t*/
+DISTRO=$DISTRO_VERSION MACHINE=$MACHINE_NAME source layers/meta-st/scripts/envsetup.sh 
+bitbake -c clean $modules-name
+bitbake gdb-cross $modules-name
+or  for more verbose
