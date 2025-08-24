@@ -4,15 +4,3 @@
 [submodule "code/openembedded-core"]
 	path = code/openembedded-core
 	url = https://github.com/openembedded/openembedded-core.git
-[submodule "code/meta-st-openstlinux"]
-	path = code/meta-st-openstlinux
-	url = https://github.com/STMicroelectronics/meta-st-openstlinux.git
-[submodule "code/meta-st-stm32mp"]
-	path = code/meta-st-stm32mp
-	url = https://github.com/STMicroelectronics/meta-st-stm32mp.git
-[submodule "code/meta-st-stm32mp-addons"]
-	path = code/meta-st-stm32mp-addons
-	url = https://github.com/STMicroelectronics/meta-st-stm32mp-addons.git
-[submodule "code/scripts"]
-	path = code/scripts
-	url = https://github.com/STMicroelectronics/meta-st-scripts.git
