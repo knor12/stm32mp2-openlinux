@@ -1,6 +1,0 @@
-[submodule "code/bitbake"]
-	path = code/bitbake
-	url = https://github.com/openembedded/bitbake
-[submodule "code/openembedded-core"]
-	path = code/openembedded-core
-	url = https://github.com/openembedded/openembedded-core.git
