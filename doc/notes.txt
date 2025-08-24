@@ -99,3 +99,8 @@ DISTRO=$DISTRO_VERSION MACHINE=$MACHINE_NAME source layers/meta-st/scripts/envse
 bitbake -c clean $modules-name
 bitbake gdb-cross $modules-name
 or  for more verbose
+
+
+
+/*good practices*/
+when building multiple releases for different machines/distributions edit local.conf to point to the same SSTATE_DIR, TMPDIR, DL_DIR to share downleds files on all builds
