@@ -29,6 +29,7 @@ cd ..
 
 /*add submodules to the your git repo in /layers/meta-st folder*/
 
+cd ./meta-st
 git submodule add https://github.com/STMicroelectronics/meta-st-openstlinux.git
 cd ./meta-st-openstlinux
 git checkout 14bbb30d00473973a67d85cbb1db8a87aa8afe65
@@ -62,6 +63,14 @@ git push
 /*install the required packages*/
 sudo apt-get update
 sudo apt-get install bsdmainutils build-essential chrpath cpio diffstat gcc-multilib git-lfs libgmp-dev libmpc-dev libsdl1.2-dev libssl-dev libusb-1.0-0 lz4 pylint python3-git python3-pexpect python3-pip socat texinfo unzip xterm zstd
+
+
+/*building for a machine/image*/
+DISTRO=$DISTRO_VERSION MACHINE=$MACHINE_NAME source layers/meta-st/scripts/envsetup.sh 
+example: 
+DISTRO=openstlinux-weston MACHINE=stm32mp1  source layers/meta-st/scripts/envsetup.sh
+
+
 
 
 /*if you get an error "Fetcher failure for URL: 'https://www.example.com/'. URL doesn't work." during the build*/
