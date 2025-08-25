@@ -29,6 +29,12 @@ function build_image() {
     bitbake "$IMAGE_NAME"
 }
 
+
+function build_sdk() {
+    echo "Building sdk: $IMAGE_NAME for machine: $MACHINE_NAME"
+    bitbake -c populate_sdk "$IMAGE_NAME" 
+}
+
 function build_sd() {
     echo "Building sd card imge: $IMAGE_NAME for machine: $MACHINE_NAME, sd card name $SD_CARD_IMAGE_NAME"
     MYDIR="$(pwd)"
@@ -54,6 +60,8 @@ function usage() {
     echo "  build              - Source the environment and build the image"
     echo "  sd                 - Create the SD card image"  
     echo "  all                - Same as 'build'"
+    echo "  sdk                - Generate SDK"
+	
 }
 
 # === PARSE ARGS ===
@@ -69,7 +77,7 @@ while [[ $# -gt 0 ]]; do
             IMAGE_NAME="$2"
             shift 2
             ;;
-        env|build|all|sd)
+        env|build|all|sd|sdk)
             POSITIONAL_ARGS+=("$1")
             shift
             ;;
@@ -94,6 +102,10 @@ case "$ACTION" in
     build|all)
         source_env
         build_image
+        ;;
+    sdk)
+        source_env
+        build_sdk
         ;;
     *)
         usage
