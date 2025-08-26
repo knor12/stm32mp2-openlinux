@@ -19,3 +19,6 @@
 [submodule "layers/meta-st/scripts"]
 	path = layers/meta-st/scripts
 	url = https://github.com/STMicroelectronics/meta-st-scripts.git
+[submodule "layers/meta-qt5"]
+	path = layers/meta-qt5
+	url = https://github.com/meta-qt5/meta-qt5.git
