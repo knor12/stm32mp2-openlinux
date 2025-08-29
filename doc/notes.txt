@@ -82,6 +82,7 @@ sudo apt-get install bsdmainutils build-essential chrpath cpio debianutils diffs
 DISTRO=$DISTRO_VERSION MACHINE=$MACHINE_NAME source layers/meta-st/scripts/envsetup.sh 
 example: 
 DISTRO=openstlinux-weston MACHINE=stm32mp25-disco  source layers/meta-st/scripts/envsetup.sh
+bitbake st-image-weston
 
 
 
