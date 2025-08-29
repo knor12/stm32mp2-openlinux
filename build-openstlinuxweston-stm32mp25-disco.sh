@@ -20,6 +20,7 @@ function source_env() {
         echo "Error: envsetup.sh not found. Please run the script from your OpenSTLinux root directory."
         exit 1
     fi
+    echo DISTRO=$DISTRO_VERSION MACHINE=$MACHINE_NAME source layers/meta-st/scripts/envsetup.sh
     DISTRO=$DISTRO_VERSION MACHINE=$MACHINE_NAME source layers/meta-st/scripts/envsetup.sh
     #source layers/meta-st/scripts/envsetup.sh "$DISTRO_VERSION" "$MACHINE_NAME"
 }
