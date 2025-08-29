@@ -1,0 +1,22 @@
++ After generation the SDK install sdk using xxxxx-snapshot.sh script provided with the SDK in "/build//tmp-glibc/deploy/sdk" folder the SDK is installed in /opt folder, example: 
+
+ 	/opt/st/stm32mp25-disco/5.0.8-snapshot/environment-setup-cortexa35-ostl-linux
+
+
++Install QT either buy build from source code or from binary, example: 
+	wget https://download.qt.io/official_releases/online_installers/qt-online-installer-linux-x64-online.run
+	chmod +x qt-online-installer-linux-x64-online.run
+	./qt-online-installer-linux-x64-online.run
+
+
+
++ Setup envirenment with the SDK provided envirenment setup script, example: 
+	" source /opt/st/stm32mp25-disco/5.0.8-snapshot/environment-setup-cortexa35-ostl-linux"
+	run command "which $(echo $CXX)" to make sure SDK exported properly
++ run qtcreator IDE
+	"qtcreator &"
+        note: mau have to add qtcreator to envirenment vaiables: "gedit ~/.profile" and add path at the buttom of file
+    
+
+           
+	
