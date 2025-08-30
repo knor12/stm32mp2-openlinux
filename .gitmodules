@@ -22,6 +22,3 @@
 [submodule "layers/meta-qt5"]
 	path = layers/meta-qt5
 	url = https://github.com/meta-qt5/meta-qt5.git
-[submodule "layers/meta-st/meta-st-x-linux"]
-	path = layers/meta-st/meta-st-x-linux
-	url = https://github.com/STMicroelectronics/meta-st-x-linux-qt.git
