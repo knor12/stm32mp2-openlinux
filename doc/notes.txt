@@ -65,10 +65,15 @@ cd ./scripts
 git checkout 8826802b453ef2ead61b07c7bc5ab525a405df04
 cd ..
 
+git  submodule  add  https://github.com/STMicroelectronics/meta-st-x-linux-qt.git  layers/meta-st/meta-st-x-linux-qt
+git checkout v1.0.0
+
 this is repeated for each sub modules, when all modules are added push submodules using: 
 git add .
 git commit -m "added submodules"
 git push 
+
+
 
 
 /*OS*/
