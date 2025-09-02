@@ -16,6 +16,12 @@
 + run qtcreator IDE
 	"qtcreator &"
         note: mau have to add qtcreator to envirenment vaiables: "gedit ~/.profile" and add path at the buttom of file
+		
+		
+		
+		
+		
+very good example on installing the sdk, configuring the qt kit and building apps:https://www.youtube.com/watch?v=33_5AJlNtOQ
     
 
            
