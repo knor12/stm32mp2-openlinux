@@ -1,0 +1,20 @@
+From 54ffaeb2 to 495103912: Add SDK and Qt5 SDK inheritance
+
+---
+ recipes-st/images/st-image-weston.bb | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/recipes-st/images/st-image-weston.bb b/recipes-st/images/st-image-weston.bb
+index 54ffaeb..4951039 100644
+--- a/recipes-st/images/st-image-weston.bb
++++ b/recipes-st/images/st-image-weston.bb
+@@ -4,6 +4,8 @@ LICENSE = "Proprietary"
+ include recipes-st/images/st-image.inc
+
+ inherit core-image features_check
++inherit populate_sdk
++inherit populate_sdk_qt5
+
+ # let's make sure we have a good image...
+ REQUIRED_DISTRO_FEATURES = "wayland"
+
