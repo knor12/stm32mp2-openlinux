@@ -2,7 +2,7 @@
 
 # === DEFAULTS ===
 DISTRO_VERSION="openstlinux-eglfs"
-IMAGE_NAME="st-example-image-qt"
+IMAGE_NAME="st-image-qt"
 MACHINE_NAME="stm32mp25-disco"  # Default; override with --machine
 BUILD_DIRECTORY="build-custom-eglfs-stm32mp25-disco"
 
@@ -12,6 +12,13 @@ IMAGES_PATH="./tmp-glibc/deploy/images/stm32mp25-disco/"
 SD_CARD_IMAGE_CREATOR="./scripts/create_sdcard_from_flashlayout.sh"
 #SD_CARD_TSV_FILE="./flashlayout_st-image-weston/optee/FlashLayout_sdcard_stm32mp257f-dk-optee.tsv"
 SD_CARD_TSV_FILE="./flashlayout_st-image-weston/optee/FlashLayout_sdcard_stm32mp257f-dk-extensible.tsv"
+
+
+#definition for printing commands in color
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m' # No Color
 
 
 # === FUNCTIONS ===
@@ -27,7 +34,7 @@ function source_env() {
 cmd="source layers/meta-st/scripts/envsetup.sh $BUILD_DIRECTORY"
 
 # Echo the command
-echo "running: $cmd"
+echo -e "${YELLOW} running: ${GREEN} $cmd ${NC}"
 
 # Run the command using 'eval' so 'source' works correctly
 eval "$cmd"
@@ -42,7 +49,7 @@ function build_image() {
     cmd="MACHINE=$MACHINE_NAME DISTRO=$DISTRO_VERSION bitbake $IMAGE_NAME"
 
     # Echo the command
-    echo "running: $cmd"
+    echo -e "${YELLOW} running: ${GREEN} $cmd ${NC}"
 
     # Run the command using 'eval' so 'source' works correctly
     eval "$cmd"
@@ -57,7 +64,7 @@ function build_sdk() {
     cmd="MACHINE=$MACHINE_NAME DISTRO=$DISTRO_VERSION bitbake -c populate_sdk $IMAGE_NAME" 
 
     # Echo the command
-    echo "running: $cmd"
+    echo -e "${YELLOW} running: ${GREEN} $cmd ${NC}"
 
     # Run the command using 'eval' so 'source' works correctly
     eval "$cmd"
@@ -78,7 +85,7 @@ function build_sd() {
     cmd="$SD_CARD_IMAGE_CREATOR  $SD_CARD_TSV_FILE "
 
     # Echo the command
-    echo "running: $cmd"
+    echo -e "${YELLOW} running: ${GREEN} $cmd ${NC}"
 
     # Run the command using 'eval' so 'source' works correctly
     eval "$cmd"
