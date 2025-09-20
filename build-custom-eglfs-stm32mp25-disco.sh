@@ -157,7 +157,7 @@ esac
 
 #usage
 # Build with default machine and image
-#./build_openstlinux.sh build
+#./build_*.sh build
 
 # Specify machine and image
-#./build_openstlinux.sh --machine stm32mp157c-dk2 --image st-image-core build
+#./build_*.sh --machine stm32mp157c-dk2 --image st-image-core build
