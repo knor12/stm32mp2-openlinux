@@ -11,7 +11,8 @@ SD_CARD_IMAGE_NAME=$MACHINE_NAME"_sd_image.raw"
 IMAGES_PATH="./tmp-glibc/deploy/images/stm32mp25-disco/"
 SD_CARD_IMAGE_CREATOR="./scripts/create_sdcard_from_flashlayout.sh"
 #SD_CARD_TSV_FILE="./flashlayout_st-image-weston/optee/FlashLayout_sdcard_stm32mp257f-dk-optee.tsv"
-SD_CARD_TSV_FILE="./flashlayout_st-image-weston/optee/FlashLayout_sdcard_stm32mp257f-dk-extensible.tsv"
+#SD_CARD_TSV_FILE="./flashlayout_st-image-weston/optee/FlashLayout_sdcard_stm32mp257f-dk-extensible.tsv"
+SD_CARD_TSV_FILE="./flashlayout_st-image-qt/extensible/FlashLayout_sdcard_stm32mp257f-dk-extensible.tsv"
 
 
 #definition for printing commands in color
