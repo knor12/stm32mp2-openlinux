@@ -2,15 +2,51 @@ SUMMARY = "ST Example Qt5 image with EGLFS (no Wayland)"
 DESCRIPTION = "Qt5 image based on a minimal core image, suitable for running Qt via EGLFS."
 LICENSE = "MIT"
 
-# Prefer an ST core image if your branch has it:
-# require recipes-st/images/st-image-core.bb
-# Otherwise fall back to Poky:
-require recipes-core/images/core-image-minimal.bb
+include recipes-st/images/st-image.inc
 
-IMAGE_FEATURES += " \
+inherit core-image features_check
+
+# let's make sure we have a good image...
+REQUIRED_DISTRO_FEATURES = "wayland"
+
+IMAGE_LINGUAS = "en-us"
+
+IMAGE_FEATURES += "\
+    splash              \
+    package-management  \
     ssh-server-dropbear \
-    package-management \
-"
+    hwcodecs            \
+    tools-profile       \
+    eclipse-debug       \
+    "
+
+#
+# INSTALL addons
+#
+CORE_IMAGE_EXTRA_INSTALL += " \
+    resize-helper \
+    st-hostname \
+    \
+    packagegroup-framework-core-base    \
+    packagegroup-framework-tools-base   \
+    \
+    packagegroup-framework-core         \
+    packagegroup-framework-tools        \
+    \
+    packagegroup-framework-core-extra   \
+    \
+    ${@bb.utils.contains('COMBINED_FEATURES', 'optee', 'packagegroup-optee-core', '', d)} \
+    ${@bb.utils.contains('COMBINED_FEATURES', 'optee', 'packagegroup-optee-test', '', d)} \
+    \
+    ${@bb.utils.contains('COMBINED_FEATURES', 'tpm2', 'packagegroup-security-tpm2', '', d)} \
+    \
+    packagegroup-st-demo \
+    "
+
+# NOTE:
+#   packagegroup-st-demo are installed on rootfs to populate the package
+#   database.
+
 
 # Core Qt5 + common modules; avoid qtwayland (no Wayland)
 IMAGE_INSTALL:append = " \
@@ -52,7 +88,6 @@ IMAGE_INSTALL:append = " kernel-modules "
 # "
 #Ethernet
 # IMAGE_INSTALL:append = " kernel-module-stmmac kernel-module-dwmac-stm32 kernel-module-libphy kernel-module-realtek"
-
 
 
 # #USB host (DWC3 on STM32MP25)
@@ -105,3 +140,26 @@ SDK_TARGET_TASK:append = " \
     qtserialport-dev \
 "
 SDK_TARGET_TASK:append = " optee-client optee-client-dev optee-os-tadevkit "
+
+
+#enable the generation of emmc and sd card flash layout files
+#ENABLE_FLASHLAYOUT_DEFAULT = "1"
+FLASHLAYOUT_TYPE = "emmc:optee sdcard:optee"
+#FLASHLAYOUT_TYPE += "emmc:extensible sdcard:extensible"
+
+#compress rootfile system
+IMAGE_FSTYPES = " ext4  ext4.gz "
+
+#for non development images 
+#EXTRA_IMAGE_FEATURES:remove = " dbg-pkgs dev-pkgs src-pkgs ptest-pkgs tools-debug tools-profile tools-testapps"
+
+# Define ROOTFS_MAXSIZE to 3GB
+IMAGE_ROOTFS_MAXSIZE = "3145728"
+
+#enable graphics
+IMAGE_INSTALL:append = " weston weston-init  "
+
+
+# Target (image) Qt5: Wayland + GLES2, no X11, no desktop GL, and no target-side tools
+# PACKAGECONFIG:remove:pn-qtbase:class-target = " gl xcb tools"
+# PACKAGECONFIG:append:pn-qtbase:class-target = " wayland gles2 libinput fontconfig harfbuzz"
