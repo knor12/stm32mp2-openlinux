@@ -10,8 +10,9 @@ BUILD_DIRECTORY="build-customweston-stm32mp25-disco"
 SD_CARD_IMAGE_NAME=$MACHINE_NAME"_sd_image.raw"
 IMAGES_PATH="./tmp-glibc/deploy/images/stm32mp25-disco/"
 SD_CARD_IMAGE_CREATOR="./scripts/create_sdcard_from_flashlayout.sh"
-SD_CARD_TSV_FILE="./flashlayout_st-image-weston/optee/FlashLayout_sdcard_stm32mp257f-dk-extensible.tsv"
+SD_CARD_TSV_FILE="./flashlayout_st-image-qt/extensible/FlashLayout_sdcard_stm32mp257f-dk-extensible.tsv"
 
+SD_CARD_SIZE_MB="1500"
 
 # === COLORS ===
 RED='\033[0;31m'
@@ -64,6 +65,9 @@ function build_sd() {
     echo "Building SD card image: $IMAGE_NAME for machine: $MACHINE_NAME"
     local MYDIR
     MYDIR="$(pwd)"
+
+    #set raw image sise
+    run_command "export SDCARD_SIZE=$SD_CARD_SIZE_MB"
 
     cd "$IMAGES_PATH" || exit 1
 
