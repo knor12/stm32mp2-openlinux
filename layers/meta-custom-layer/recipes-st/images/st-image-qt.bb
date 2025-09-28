@@ -11,14 +11,19 @@ REQUIRED_DISTRO_FEATURES = "wayland"
 
 IMAGE_LINGUAS = "en-us"
 
+# IMAGE_FEATURES += "\
+#     splash              \
+#     package-management  \
+#     ssh-server-dropbear \
+#     hwcodecs            \
+#     tools-profile       \
+#     eclipse-debug       \
+#     "
+
+
 IMAGE_FEATURES += "\
-    splash              \
-    package-management  \
     ssh-server-dropbear \
-    hwcodecs            \
-    tools-profile       \
-    eclipse-debug       \
-    "
+    hwcodecs"
 
 #
 # INSTALL addons
@@ -124,6 +129,7 @@ SDK_HOST_TASK:append = " \
     nativesdk-cmake \
     nativesdk-ninja \
     nativesdk-pkgconfig \
+    nativesdk-qtbase-tools \
 "
 
 # Target-side SDK sysroot packages available to the SDK (not installed into image)
@@ -163,3 +169,6 @@ IMAGE_INSTALL:append = " weston weston-init  "
 # Target (image) Qt5: Wayland + GLES2, no X11, no desktop GL, and no target-side tools
 # PACKAGECONFIG:remove:pn-qtbase:class-target = " gl xcb tools"
 # PACKAGECONFIG:append:pn-qtbase:class-target = " wayland gles2 libinput fontconfig harfbuzz"
+
+#replaces ST default background
+IMAGE_INSTALL:append = " weston-background "
