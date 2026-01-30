@@ -3,7 +3,7 @@
 # === DEFAULTS ===
 DISTRO_VERSION="custom-weston"
 IMAGE_NAME="core-image-weston"
-MACHINE_NAME="stm32mp25-disco"  # Default; override with --machine
+MACHINE_NAME="my-stm32mp25-disco"  # Default; override with --machine
 BUILD_DIRECTORY="build"
 DOWNLOAD_DIRECTORY="$PWD/downloads"
 SSTATE_DIRECTRORY="$PWD/sstate-cache"
