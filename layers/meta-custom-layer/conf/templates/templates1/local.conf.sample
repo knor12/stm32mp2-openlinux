@@ -1,4 +1,4 @@
-#
+#NK version
 # This file is your local configuration file and is where all local user settings
 # are placed. The comments in this file give some guide to the options a new user
 # to the system might want to change but pretty much any configuration option can
@@ -30,7 +30,7 @@
 # This sets the default machine to be qemux86-64 if no other machine is selected:
 #MACHINE ??= "qemux86-64"
 #MACHINE ?= "stm32mp25-disco"
-MACHINE = "stm32mp25-disco"
+MACHINE ?= "stm32mp25-disco"
 
 # These are some of the more commonly used values. Looking at the files in the
 # meta/conf/machine directory, or the conf/machine directory of any additional layers
@@ -282,3 +282,7 @@ DISTRO_FEATURES:append = " opengl egl"
 # Set EULA acceptance
 # =========================================================================
 ACCEPT_EULA_stm32mp25-disco = "1"
+ACCEPT_EULA="1"
+EULA_AGREED="1"
+EULA_ST_BSP="1"
+EULA_ST_FIRMWARE = "1"

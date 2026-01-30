@@ -51,8 +51,26 @@ function source_env() {
         echo "Error: envsetup.sh not found. Please run the script from your OpenSTLinux root directory."
         exit 1
     fi
-    run_command "DL_DIR=$DOWNLOAD_DIRECTORY SSTATE_DIR=$SSTATE_DIRECTRORY TEMPLATECONF=$TEMPLATES_DIRECTORY source layers/meta-st/scripts/envsetup.sh $BUILD_DIRECTORY"
 
+    
+    #run_command "DL_DIR=$DOWNLOAD_DIRECTORY SSTATE_DIR=$SSTATE_DIRECTRORY TEMPLATECONF=$TEMPLATES_DIRECTORY source layers/meta-st/scripts/envsetup.sh $BUILD_DIRECTORY"
+     # Export variables so they persist in the current shell
+    export DL_DIR="$DOWNLOAD_DIRECTORY"
+    export SSTATE_DIR="$SSTATE_DIRECTORY"
+    export TEMPLATECONF="$TEMPLATES_DIRECTORY"
+    export MACHINE="stm32mp25-disco"
+    #export MACHINE="my-stm32mp25-disco"
+    export DISTRO="$DISTRO_VERSION"
+    export ACCEPT_EULA="1"
+    export EULA_AGREED="1"
+    export EULA_ST_BSP="1"
+    export ACCEPT_EULA_stm32mp25-disco= "1"
+
+    # Source the environment in the current shell
+    source layers/meta-st/scripts/envsetup.sh "$BUILD_DIRECTORY"
+
+    #this a command that converts "MACHINE =" to "MACHINE ?=" in /conf/local.conf to allow for passing any machine to the build system
+    sed -i -E 's/^(MACHINE) =/\1 ?=/' "$PWD/../$BUILD_DIRECTORY/conf/local.conf"
 }
 
 function build_image() {
