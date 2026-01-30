@@ -4,6 +4,8 @@ git clone https://github.com/knor12/stm32mp2-openlinux.git
 cd stm32mp2-openlinux
 git submodule update --init --recursive
 
+to build the image after installing all requirements run th script: build-custom-eglfs-stm32mp25-disco
+
 
 refer to https://wiki.st.com/stm32mpu/wiki/STM32MPU_Distribution_Package#Installing_the_OpenSTLinux_distribution for instructions overall workflow.
 
