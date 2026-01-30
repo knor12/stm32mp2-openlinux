@@ -1,10 +1,14 @@
 #!/bin/bash
 
 # === DEFAULTS ===
-DISTRO_VERSION="openstlinux-eglfs"
-IMAGE_NAME="st-image-qt"
+DISTRO_VERSION="custom-weston"
+IMAGE_NAME="core-image-weston"
 MACHINE_NAME="stm32mp25-disco"  # Default; override with --machine
-BUILD_DIRECTORY="build-custom-eglfs-stm32mp25-disco"
+BUILD_DIRECTORY="build"
+DOWNLOAD_DIRECTORY="$PWD/downloads"
+SSTATE_DIRECTRORY="$PWD/sstate-cache"
+TEMPLATES_DIRECTORY="$PWD/layers/meta-custom-layer/conf/templates/templates1/"
+
 
 # SD Card image settings
 SD_CARD_IMAGE_NAME=$MACHINE_NAME"_sd_image.raw"
@@ -47,8 +51,8 @@ function source_env() {
         echo "Error: envsetup.sh not found. Please run the script from your OpenSTLinux root directory."
         exit 1
     fi
+    run_command "DL_DIR=$DOWNLOAD_DIRECTORY SSTATE_DIR=$SSTATE_DIRECTRORY TEMPLATECONF=$TEMPLATES_DIRECTORY source layers/meta-st/scripts/envsetup.sh $BUILD_DIRECTORY"
 
-    run_command "source layers/meta-st/scripts/envsetup.sh $BUILD_DIRECTORY"
 }
 
 function build_image() {
