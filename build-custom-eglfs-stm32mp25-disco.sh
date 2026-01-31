@@ -2,7 +2,7 @@
 
 # === DEFAULTS ===
 DISTRO_VERSION="custom-weston"
-IMAGE_NAME="core-image-weston"
+IMAGE_NAME="st-image-weston"
 MACHINE_NAME="my-stm32mp25-disco"  # Default; override with --machine
 BUILD_DIRECTORY="build"
 DOWNLOAD_DIRECTORY="$PWD/downloads"
@@ -61,13 +61,15 @@ function source_env() {
     export MACHINE="stm32mp25-disco"
     #export MACHINE="my-stm32mp25-disco"
     export DISTRO="$DISTRO_VERSION"
-    export ACCEPT_EULA="1"
-    export EULA_AGREED="1"
-    export EULA_ST_BSP="1"
-    export ACCEPT_EULA_stm32mp25-disco= "1"
+    export ACCEPT_EULA=1
+    export EULA_AGREED=1
+    export EULA_ST_BSP=1
+    export ACCEPT_EULA_stm32mp25-disco=1
 
     # Source the environment in the current shell
     source layers/meta-st/scripts/envsetup.sh "$BUILD_DIRECTORY"
+
+    #echo command so it ca
 
     #this a command that converts "MACHINE =" to "MACHINE ?=" in /conf/local.conf to allow for passing any machine to the build system
     sed -i -E 's/^(MACHINE) =/\1 ?=/' "$PWD/../$BUILD_DIRECTORY/conf/local.conf"
